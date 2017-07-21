@@ -1,0 +1,11 @@
+[user]
+	name = David Lepaux
+	email = d.lepaux@gmail.com
+[http]
+	proxy = http://proxyweb.corp.ads:3128
+[alias]
+	# Show history (graphic) like SourceTree
+	lg = log --graph --pretty=format:'%C(yellow)%h%Creset %C(green)%d%Creset %s - %Cblue(%cr)%Creset - %C(cyan)%an%Creset' --abbrev-commit --date=relative
+	# Push and Create branch on remote
+	puh = git push -u origin HEAD
+	
