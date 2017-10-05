@@ -3,8 +3,6 @@
 [user]
 	name = David Lepaux
 	email = d.lepaux@gmail.com
-[http]
-	proxy = http://proxyweb.corp.ads:3128
 [color]
 	# Enable colors in color-supporting terminals
 	ui = auto
@@ -22,6 +20,8 @@
 	review-local = "!git lg @{push}.."
 	# Or pre 2.5, as we didn't differential push and upstream in shorthands:
 	# review-local = lg @{upstream}..
+	# git git git git git git
+	git = !exec git
 [core]
 	# Don't paginate output by default
 	pager = cat
