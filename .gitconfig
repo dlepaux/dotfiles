@@ -2,10 +2,8 @@
 # Windows users: "~" is your profile's home directory, e.g. C:\Users\<YourName>
 [user]
 	name = David Lepaux
+	username = dlepaux
 	email = d.lepaux@gmail.com
-[color]
-	# Enable colors in color-supporting terminals
-	ui = auto
 [alias]
 	# Show history (graphic) like SourceTree
 	#lg = log --graph --pretty=format:'%C(yellow)%h%Creset %C(green)%d%Creset %s - %Cblue(%cr)%Creset - %C(cyan)%an%Creset' --abbrev-commit --date=relative
@@ -15,7 +13,7 @@
 	add-pick = git add -p
 	st = status
 	ci = commit
-	lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
+	lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset' --max-count=40
 	oops = commit --amend --no-edit
 	review-local = "!git lg @{push}.."
 	# Or pre 2.5, as we didn't differential push and upstream in shorthands:
@@ -37,7 +35,7 @@
 	# editor = 'c:/Program Files (x86)/Sublime Text 2/sublime_text.exe' -w
 	# 
 	# Sublime Text 3 on Windows:
-	editor = 'c:/Program Files/Sublime Text 3/subl.exe' -w
+#	editor = 'c:/Program Files/Sublime Text 3/subl.exe' -w
 	#
 	# Don't consider trailing space change as a cause for merge conflicts
 	whitespace = -trailing-space
@@ -107,3 +105,12 @@
 	prereleaseSuffix = .beta
 	prereleaseSuffix = -rc
 	prereleaseSuffix = .rc
+[branch]
+	autosetuprebase = always
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[init]
+	defaultBranch = main
