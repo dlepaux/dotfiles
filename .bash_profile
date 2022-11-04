@@ -1,3 +1,5 @@
+# Once the sexy-bash-prompt is setted, you will need to update the Terminal Settings to open shell with /bin/bash !
+
 # Download this
 # curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 
