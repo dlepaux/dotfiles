@@ -77,7 +77,7 @@
 	# rebase = true
 	# WARNING! This option, which does away with the one gotcha of
 	# auto-rebasing on pulls, is only available from 1.8.5 onwards.
-	rebase = preserve
+	rebase = merges
 [push]
 	# Default push should only push the current branch to its push target, regardless of its remote name
 	default = upstream
