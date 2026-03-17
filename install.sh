@@ -6,11 +6,21 @@ set -e
 
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
+# Homebrew packages
+if command -v brew &>/dev/null; then
+  echo "Installing Homebrew packages..."
+  brew bundle --file="$DOTFILES_DIR/Brewfile" --no-lock
+else
+  echo "Homebrew not installed — skipping Brewfile. Install it first."
+fi
+
 # Shell configs
 ln -sf "$DOTFILES_DIR/.zprofile" ~/.zprofile
 ln -sf "$DOTFILES_DIR/.zshrc" ~/.zshrc
 ln -sf "$DOTFILES_DIR/.bash_profile" ~/.bash_profile
 ln -sf "$DOTFILES_DIR/.gitconfig" ~/.gitconfig
+ln -sf "$DOTFILES_DIR/.gitignore_global" ~/.gitignore_global
+ln -sf "$DOTFILES_DIR/.editorconfig" ~/.editorconfig
 
 # Starship config
 mkdir -p ~/.config

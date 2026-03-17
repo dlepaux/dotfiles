@@ -54,7 +54,10 @@
       "mcp__firecrawl-mcp__*",
       "mcp__chrome-devtools__*"
     ],
-    "deny": []
+    "deny": [],
+    "additionalDirectories": [
+      "/Users/dalepaux/WebServer/dlepaux/dotfiles/.claude/skills"
+    ]
   },
   "hooks": {
     "PostToolUse": [

@@ -23,6 +23,8 @@
 	pager = cat
 	# Don't consider trailing space change as a cause for merge conflicts
 	whitespace = -trailing-space
+	# Global gitignore
+	excludesFile = ~/.gitignore_global
 [diff]
 	# Use better, descriptive initials (c, i, w) instead of a/b.
 	mnemonicPrefix = true

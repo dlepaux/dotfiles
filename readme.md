@@ -11,7 +11,10 @@ Personal configuration files for macOS.
 | `.bash_profile` | Bash config (fallback) — same essentials + git completion |
 | `.gitconfig` | Git aliases, merge/push/pull settings, LFS |
 | `starship.toml` | Starship prompt theme — git branch/status, language versions, colors |
+| `.gitignore_global` | Global gitignore — OS junk, editors, .env files |
+| `.editorconfig` | Cross-editor defaults — indent, charset, trailing whitespace |
 | `mcp.json` | VSCode MCP servers configuration |
+| `Brewfile` | Homebrew packages and casks — `brew bundle` to restore |
 | `.claude/` | Claude Code configuration (settings, skills, agents, hooks) |
 | `.secrets.example` | Template for API keys (actual keys in `~/.secrets`) |
 | `.gitignore` | Prevents accidental commit of secrets and editor files |
@@ -59,8 +62,11 @@ Loaded in every session. Defines coding principles (KISS > DRY > SOLID), commit 
 
 | Skill | Description |
 |-------|-------------|
+| `/init-project` | Audit project setup, bootstrap CLAUDE.md, NORTH-STAR.md, .editorconfig, .env.example |
 | `/review` | Code review — quick or deep depending on change size |
 | `/fix-issue <#>` | Read GitHub issue, branch, implement, test, commit |
+| `/issue <desc>` | Create a structured GitHub issue (bug, feature, enhancement) |
+| `/pr [base]` | Create a structured PR with summary, test plan, and linked issues |
 | `/test` | Auto-detect project type and run the right test suite |
 | `/post-feature` | Post-implementation quality gate (format, lint, types, tests, review) |
 | `/deploy-check` | Pre-deployment checklist with pass/fail report |
