@@ -14,6 +14,7 @@ Personal configuration files for macOS.
 | `mcp.json` | VSCode MCP servers configuration |
 | `.claude/` | Claude Code configuration (settings, skills, agents, hooks) |
 | `.secrets.example` | Template for API keys (actual keys in `~/.secrets`) |
+| `.gitignore` | Prevents accidental commit of secrets and editor files |
 | `install.sh` | Symlinks everything + merges MCP config |
 
 ## Fresh install on macOS
