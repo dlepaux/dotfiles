@@ -12,6 +12,9 @@ Personal configuration files for macOS.
 | `.gitconfig` | Git aliases, merge/push/pull settings, LFS |
 | `starship.toml` | Starship prompt theme — git branch/status, language versions, colors |
 | `mcp.json` | VSCode GitHub Copilot MCP servers configuration |
+| `.claude/settings.json` | Claude Code global permissions (symlinked to `~/.claude/settings.json`) |
+| `.claude/mcp-servers.json` | Claude Code MCP servers (merged into `~/.claude.json`) |
+| `.secrets.example` | Template for API keys (actual keys in `~/.secrets`) |
 | `install.sh` | Symlinks all dotfiles to `~/` in one command |
 
 ## Fresh install on macOS
@@ -79,3 +82,39 @@ cp ~/path/to/dotfiles/mcp.json ~/.vscode/mcp.json
 **Required dependencies:**
 - Docker (for `sequentialthinking`)
 - Node.js / npx (for `context7`, `chrome-devtools-mcp`, `firecrawl-mcp`)
+
+## Claude Code
+
+Configuration for [Claude Code](https://claude.ai/claude-code) (Anthropic's CLI/VSCode extension).
+
+### Settings (`.claude/settings.json`)
+
+Global permissions for Claude Code — allows common dev tools (git, npm, docker, etc.) without per-command prompts. Symlinked to `~/.claude/settings.json` by `install.sh`.
+
+### MCP Servers (`.claude/mcp-servers.json`)
+
+Same MCP servers as VSCode, configured for Claude Code's format. Merged into `~/.claude.json` by `install.sh` using `jq`.
+
+| Server | Description |
+|--------|-------------|
+| `sequentialthinking` | Structured step-by-step reasoning (Docker) |
+| `context7` | Library/framework documentation lookup |
+| `chrome-devtools` | Chrome DevTools interaction |
+| `firecrawl-mcp` | Web scraping via Firecrawl API |
+| `figma` | Figma design context (HTTP) |
+| `github` | GitHub repos, issues, PRs, code search (Docker) |
+| `playwright` | Browser automation and E2E testing |
+| `docker` | Container management, logs, inspect |
+
+### API Keys
+
+API keys are stored in `~/.secrets` (chmod 600, never committed). On first install, `install.sh` creates it from `.secrets.example`.
+
+```sh
+# Edit with your actual keys
+vim ~/.secrets
+```
+
+### Discover more MCP servers
+
+Browse the official registry: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)

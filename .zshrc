@@ -1,5 +1,8 @@
 # Zsh configuration — interactive shell only
 
+# Load secrets (API keys, tokens)
+[ -f ~/.secrets ] && source ~/.secrets
+
 # NVM bash completion (interactive only)
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
