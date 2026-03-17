@@ -2,55 +2,47 @@
   "servers": {
     "sequentialthinking": {
       "command": "docker",
-      "args": [
-        "run",
-        "--rm",
-        "-i",
-        "mcp/sequentialthinking"
-      ],
+      "args": ["run", "--rm", "-i", "mcp/sequentialthinking"],
       "type": "stdio"
     },
     "context7": {
-      "command": "/bin/bash",
-      "args": [
-        "-c",
-        "npx -y @upstash/context7-mcp@latest"
-      ],
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"],
       "type": "stdio"
     },
-    "io.github.ChromeDevTools/chrome-devtools-mcp": {
-      "type": "stdio",
-      "command": "/bin/bash",
-      "args": [
-        "-c",
-        "npx chrome-devtools-mcp@0.10.2"
-      ],
-      "gallery": "https://api.mcp.github.com",
-      "version": "0.10.2"
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"],
+      "type": "stdio"
     },
     "firecrawl-mcp": {
-      "command": "/bin/bash",
-      "args": [
-        "-c",
-        "npx -y firecrawl-mcp"
-      ],
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
       "type": "stdio",
       "env": {
         "FIRECRAWL_API_KEY": "${input:FIRECRAWL_API_KEY}"
       }
+    },
+    "figma": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"],
+      "type": "stdio"
+    },
+    "docker": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-docker"],
+      "type": "stdio"
     }
   },
   "inputs": [
     {
-      "id": "CONTEXT7_API_KEY",
-      "type": "promptString",
-      "description": "CONTEXT7 API key for authentication",
-      "password": true
-    },
-    {
       "id": "FIRECRAWL_API_KEY",
       "type": "promptString",
-      "description": "FIRECRAWL API key for authentication",
+      "description": "Firecrawl API key",
       "password": true
     }
   ]

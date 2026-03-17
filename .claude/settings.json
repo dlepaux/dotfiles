@@ -9,12 +9,6 @@
       "Bash(docker:*)",
       "Bash(gh:*)",
       "Bash(curl:*)",
-      "Bash(file:*)",
-      "Bash(chmod:*)",
-      "Bash(source:*)",
-      "Bash(export:*)",
-      "Bash(uuidgen)",
-      "Bash(openssl rand:*)",
       "Bash(python3:*)",
       "Bash(python:*)",
       "Bash(pip:*)",
@@ -31,18 +25,73 @@
       "Bash(cat:*)",
       "Bash(ls:*)",
       "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(sed:*)",
+      "Bash(sort:*)",
+      "Bash(diff:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(touch:*)",
       "Bash(wc:*)",
       "Bash(du:*)",
       "Bash(head:*)",
       "Bash(tail:*)",
       "Bash(jq:*)",
+      "Bash(file:*)",
+      "Bash(chmod:*)",
+      "Bash(uuidgen)",
+      "Bash(openssl rand:*)",
       "Read(~/**)",
       "WebSearch",
       "WebFetch",
-      "mcp__context7__resolve-library-id",
-      "mcp__context7__query-docs",
-      "mcp__figma__get_metadata"
+      "mcp__context7__*",
+      "mcp__figma__*",
+      "mcp__sequentialthinking__*",
+      "mcp__github__*",
+      "mcp__playwright__*",
+      "mcp__docker__*",
+      "mcp__firecrawl-mcp__*",
+      "mcp__chrome-devtools__*"
     ],
     "deny": []
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/format.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/protect-env.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude needs your attention\" with title \"Claude Code\"'",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
   }
 }

@@ -1,6 +1,8 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 # Symlink dotfiles to home directory
 # Usage: ./install.sh
+
+set -e
 
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
@@ -18,9 +20,13 @@ ln -sf "$DOTFILES_DIR/starship.toml" ~/.config/starship.toml
 mkdir -p ~/.vscode
 ln -sf "$DOTFILES_DIR/mcp.json" ~/.vscode/mcp.json
 
-# Claude Code settings
+# Claude Code
 mkdir -p ~/.claude
 ln -sf "$DOTFILES_DIR/.claude/settings.json" ~/.claude/settings.json
+ln -sf "$DOTFILES_DIR/.claude/CLAUDE.md" ~/.claude/CLAUDE.md
+ln -sfn "$DOTFILES_DIR/.claude/agents" ~/.claude/agents
+ln -sfn "$DOTFILES_DIR/.claude/skills" ~/.claude/skills
+ln -sfn "$DOTFILES_DIR/.claude/hooks" ~/.claude/hooks
 
 # Secrets template
 if [ ! -f ~/.secrets ]; then
@@ -29,12 +35,16 @@ if [ ! -f ~/.secrets ]; then
   echo "Created ~/.secrets from template — edit it with your API keys."
 fi
 
-# Claude Code MCP servers (merge into ~/.claude.json)
+# Claude Code MCP servers (merge into ~/.claude.json, preserving existing)
 if [ -f ~/.claude.json ]; then
+  if ! command -v jq &>/dev/null; then
+    echo "jq is required but not installed. Run: brew install jq"
+    exit 1
+  fi
   jq --slurpfile servers "$DOTFILES_DIR/.claude/mcp-servers.json" \
-    '.mcpServers = $servers[0]' ~/.claude.json > ~/.claude.json.tmp \
+    '.mcpServers = (.mcpServers // {}) * $servers[0]' ~/.claude.json > ~/.claude.json.tmp \
     && mv ~/.claude.json.tmp ~/.claude.json
-  echo "Claude Code MCP servers synced."
+  echo "Claude Code MCP servers merged."
 elif command -v claude &>/dev/null; then
   echo "Run 'claude' once to initialize ~/.claude.json, then re-run install.sh."
 else

@@ -1,0 +1,6 @@
+.secrets
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/

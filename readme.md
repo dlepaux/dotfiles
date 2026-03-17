@@ -7,114 +7,112 @@ Personal configuration files for macOS.
 | File | Description |
 |------|-------------|
 | `.zprofile` | Zsh login shell — brew + nvm environment (loaded by all shells, including VSCode) |
-| `.zshrc` | Zsh interactive shell — completions, history, starship prompt |
+| `.zshrc` | Zsh interactive shell — completions, history, starship prompt, aliases |
 | `.bash_profile` | Bash config (fallback) — same essentials + git completion |
 | `.gitconfig` | Git aliases, merge/push/pull settings, LFS |
 | `starship.toml` | Starship prompt theme — git branch/status, language versions, colors |
-| `mcp.json` | VSCode GitHub Copilot MCP servers configuration |
-| `.claude/settings.json` | Claude Code global permissions (symlinked to `~/.claude/settings.json`) |
-| `.claude/mcp-servers.json` | Claude Code MCP servers (merged into `~/.claude.json`) |
+| `mcp.json` | VSCode MCP servers configuration |
+| `.claude/` | Claude Code configuration (settings, skills, agents, hooks) |
 | `.secrets.example` | Template for API keys (actual keys in `~/.secrets`) |
-| `install.sh` | Symlinks all dotfiles to `~/` in one command |
+| `install.sh` | Symlinks everything + merges MCP config |
 
 ## Fresh install on macOS
 
-### 1. Set your default shell to zsh
-
-Open **Terminal > Settings > General** and set "Shells open with" to **Default login shell** (which is `/bin/zsh` on macOS).
-
-### 2. Install prerequisites
+### 1. Install prerequisites
 
 ```sh
-# Homebrew (if not already installed)
+# Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Starship prompt
-brew install starship
+# Required tools
+brew install starship jq
 ```
 
-### 3. Clone this repo
+### 2. Clone and install
 
 ```sh
-git clone https://github.com/dlepaux/dotfiles.git ~/dotfiles
-```
-
-### 4. Install (symlink all config files)
-
-```sh
+git clone https://github.com/dlepaux/dotfiles.git ~/WebServer/dlepaux/dotfiles
+cd ~/WebServer/dlepaux/dotfiles
 ./install.sh
 ```
 
-This creates symlinks from `~/` to this repo, so edits are automatically tracked by git.
-
-### 5. Activate
-
-Open a new terminal tab, or run:
+### 3. Configure secrets
 
 ```sh
-source ~/.zshrc
+vim ~/.secrets  # Fill in your API keys
 ```
 
-You should see a colorful prompt with your username, hostname, current directory, and git branch/status when inside a repo.
+### 4. Activate
 
-## MCP Servers (mcp.json)
-
-Configuration for [Model Context Protocol](https://modelcontextprotocol.io/) servers used by GitHub Copilot in VSCode.
-
-| Server | Description |
-|--------|-------------|
-| `sequentialthinking` | Runs via Docker — enables structured, step-by-step reasoning |
-| `context7` | Up-to-date documentation lookup for libraries and frameworks |
-| `chrome-devtools-mcp` | Interact with Chrome DevTools (inspect, debug, network) |
-| `firecrawl-mcp` | Web scraping and crawling via the Firecrawl API |
-
-### Setup
-
-Copy to your VSCode user settings directory:
-
-```sh
-cp ~/path/to/dotfiles/mcp.json ~/.vscode/mcp.json
-```
-
-**Required API keys** — VSCode will prompt for these on first use:
-- `FIRECRAWL_API_KEY` — get one at [firecrawl.dev](https://firecrawl.dev)
-
-**Required dependencies:**
-- Docker (for `sequentialthinking`)
-- Node.js / npx (for `context7`, `chrome-devtools-mcp`, `firecrawl-mcp`)
+Open a new terminal tab, or `source ~/.zshrc`.
 
 ## Claude Code
 
 Configuration for [Claude Code](https://claude.ai/claude-code) (Anthropic's CLI/VSCode extension).
 
-### Settings (`.claude/settings.json`)
+### Personal preferences (`.claude/CLAUDE.md`)
 
-Global permissions for Claude Code — allows common dev tools (git, npm, docker, etc.) without per-command prompts. Symlinked to `~/.claude/settings.json` by `install.sh`.
+Loaded in every session. Defines coding principles (KISS > DRY > SOLID), commit style (conventional commits), mentor mindset, and quality expectations.
+
+### Skills (slash commands)
+
+| Skill | Description |
+|-------|-------------|
+| `/review` | Code review — quick or deep depending on change size |
+| `/fix-issue <#>` | Read GitHub issue, branch, implement, test, commit |
+| `/test` | Auto-detect project type and run the right test suite |
+| `/post-feature` | Post-implementation quality gate (format, lint, types, tests, review) |
+| `/deploy-check` | Pre-deployment checklist with pass/fail report |
+
+### Agents
+
+| Agent | Model | Description |
+|-------|-------|-------------|
+| `reviewer` | Sonnet | Quick code review on git diff |
+| `deep-reviewer` | Opus | In-depth architecture, security, performance review |
+| `debugger` | Opus | Root cause analysis with fix implementation |
+
+### Hooks
+
+| Event | Hook | Description |
+|-------|------|-------------|
+| `PostToolUse` | `format.sh` | Auto-format files after Edit/Write (per-language) |
+| `PreToolUse` | `protect-env.sh` | Block access to `.env` files |
+| `Notification` | macOS alert | Desktop notification when Claude needs attention |
 
 ### MCP Servers (`.claude/mcp-servers.json`)
 
-Same MCP servers as VSCode, configured for Claude Code's format. Merged into `~/.claude.json` by `install.sh` using `jq`.
+Merged into `~/.claude.json` by `install.sh` (preserves manually added servers).
 
 | Server | Description |
 |--------|-------------|
-| `sequentialthinking` | Structured step-by-step reasoning (Docker) |
+| `sequentialthinking` | Structured reasoning (Docker) |
 | `context7` | Library/framework documentation lookup |
 | `chrome-devtools` | Chrome DevTools interaction |
 | `firecrawl-mcp` | Web scraping via Firecrawl API |
 | `figma` | Figma design context (HTTP) |
-| `github` | GitHub repos, issues, PRs, code search (Docker) |
+| `github` | GitHub repos, issues, PRs (Docker) |
 | `playwright` | Browser automation and E2E testing |
 | `docker` | Container management, logs, inspect |
 
 ### API Keys
 
-API keys are stored in `~/.secrets` (chmod 600, never committed). On first install, `install.sh` creates it from `.secrets.example`.
+Stored in `~/.secrets` (chmod 600, never committed). Required keys:
 
-```sh
-# Edit with your actual keys
-vim ~/.secrets
-```
+| Variable | Service |
+|----------|---------|
+| `FIRECRAWL_API_KEY` | [firecrawl.dev](https://firecrawl.dev) |
+| `CONTEXT7_API_KEY` | [context7.com](https://context7.com) |
+| `GITHUB_TOKEN` | [GitHub PAT](https://github.com/settings/tokens) |
 
 ### Discover more MCP servers
 
 Browse the official registry: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
+
+## VSCode MCP Servers (mcp.json)
+
+Same core servers as Claude Code, adapted for VSCode's format. Symlinked to `~/.vscode/mcp.json` by `install.sh`.
+
+**Required dependencies:**
+- Docker (for `sequentialthinking`)
+- Node.js / npx (for `context7`, `chrome-devtools`, `firecrawl-mcp`, `playwright`, `docker`)

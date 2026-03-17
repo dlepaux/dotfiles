@@ -7,7 +7,10 @@
   "context7": {
     "type": "stdio",
     "command": "npx",
-    "args": ["-y", "@upstash/context7-mcp@latest"]
+    "args": ["-y", "@upstash/context7-mcp@latest"],
+    "env": {
+      "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
+    }
   },
   "firecrawl-mcp": {
     "type": "stdio",
