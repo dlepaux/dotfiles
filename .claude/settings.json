@@ -52,7 +52,8 @@
       "mcp__playwright__*",
       "mcp__docker__*",
       "mcp__firecrawl-mcp__*",
-      "mcp__chrome-devtools__*"
+      "mcp__chrome-devtools__*",
+      "Bash(./install.sh)"
     ],
     "deny": [],
     "additionalDirectories": [

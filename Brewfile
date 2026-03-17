@@ -32,4 +32,4 @@ brew "imagemagick"
 
 # Casks
 cask "claude-code"
-cask "docker"
+cask "docker-desktop"

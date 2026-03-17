@@ -9,7 +9,7 @@ DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 # Homebrew packages
 if command -v brew &>/dev/null; then
   echo "Installing Homebrew packages..."
-  brew bundle --file="$DOTFILES_DIR/Brewfile" --no-lock
+  brew bundle --file="$DOTFILES_DIR/Brewfile"
 else
   echo "Homebrew not installed — skipping Brewfile. Install it first."
 fi
