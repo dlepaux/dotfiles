@@ -1,0 +1,60 @@
+# Starship prompt configuration
+# https://starship.rs/config/
+
+# Prompt format inspired by sexy-bash-prompt: user at host in dir on branch
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$python\
+$rust\
+$golang\
+$cmd_duration\
+$line_break\
+$character"""
+
+[username]
+show_always = true
+style_user = "bold blue"
+format = "[$user]($style) "
+
+[hostname]
+ssh_only = false
+style = "bold #00afff"
+format = "at [$hostname]($style) "
+
+[directory]
+style = "bold green"
+truncation_length = 5
+format = "in [$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+style = "bold #afff00"
+format = "on [$symbol$branch(:$remote_branch)]($style) "
+
+[git_status]
+style = "bold #afff00"
+format = '([$all_status$ahead_behind]($style) )'
+
+[nodejs]
+format = "via [$symbol($version)]($style) "
+
+[python]
+format = "via [$symbol($version)]($style) "
+
+[rust]
+format = "via [$symbol($version)]($style) "
+
+[golang]
+format = "via [$symbol($version)]($style) "
+
+[cmd_duration]
+min_time = 2000
+format = "took [$duration]($style) "
+
+[character]
+success_symbol = "[\\$](white)"
+error_symbol = "[\\$](bold red)"

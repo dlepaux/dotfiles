@@ -9,8 +9,8 @@
 	#lg = log --graph --pretty=format:'%C(yellow)%h%Creset %C(green)%d%Creset %s - %Cblue(%cr)%Creset - %C(cyan)%an%Creset' --abbrev-commit --date=relative
 	# Push and Create branch on remote
 	puh = push -u origin HEAD
-	# Selected add
-	add-pick = git add -p
+	# Interactive staging
+	add-pick = add -p
 	st = status
 	ci = commit
 	lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset' --max-count=40
@@ -21,22 +21,6 @@
 [core]
 	# Don't paginate output by default
 	pager = cat
-	#
-	# Out of luck: on Windows w/o msysGit? You may have Notepad++…
-	# editor = 'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin
-	# 
-	# If you want to use Sublime Text 2's subl wrapper:
-	# editor = subl -w
-	# 
-	# Or Atom, perhaps:
-	# editor = atom --wait
-	# 
-	# Sublime Text 2 on Windows:
-	# editor = 'c:/Program Files (x86)/Sublime Text 2/sublime_text.exe' -w
-	# 
-	# Sublime Text 3 on Windows:
-#	editor = 'c:/Program Files/Sublime Text 3/subl.exe' -w
-	#
 	# Don't consider trailing space change as a cause for merge conflicts
 	whitespace = -trailing-space
 [diff]
