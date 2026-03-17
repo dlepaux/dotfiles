@@ -104,7 +104,18 @@ Stored in `~/.secrets` (chmod 600, never committed). Required keys:
 |----------|---------|
 | `FIRECRAWL_API_KEY` | [firecrawl.dev](https://firecrawl.dev) |
 | `CONTEXT7_API_KEY` | [context7.com](https://context7.com) |
-| `GITHUB_TOKEN` | [GitHub PAT](https://github.com/settings/tokens) |
+| `GITHUB_TOKEN` | [GitHub PAT](https://github.com/settings/tokens) (fine-grained) |
+
+#### GitHub PAT scopes (fine-grained token)
+
+| Permission | Access | Why |
+|-----------|--------|-----|
+| Contents | Read & Write | Read/search code, create files |
+| Issues | Read & Write | Create/manage issues |
+| Pull requests | Read & Write | Create/review PRs |
+| Metadata | Read-only | Basic repo info (auto-granted) |
+| Actions | Read-only | View workflow runs/logs (optional) |
+| Workflows | Read & Write | Trigger/manage CI (optional) |
 
 ### Discover more MCP servers
 
