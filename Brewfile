@@ -22,9 +22,6 @@ brew "pkgconf"
 
 # DevOps & cloud
 brew "ansible"
-brew "azure-cli"
-brew "doppler"
-brew "platformsh/tap/upsun-cli"
 
 # Media
 brew "ffmpeg"

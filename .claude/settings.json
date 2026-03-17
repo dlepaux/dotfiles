@@ -22,10 +22,15 @@
       "Bash(drush:*)",
       "Bash(brew:*)",
       "Bash(make:*)",
+      "Bash(ansible:*)",
+      "Bash(ansible-playbook:*)",
+      "Bash(ansible-vault:*)",
+      "Bash(ansible-galaxy:*)",
       "Bash(cat:*)",
       "Bash(ls:*)",
       "Bash(find:*)",
       "Bash(grep:*)",
+      "Bash(echo:*)",
       "Bash(sed:*)",
       "Bash(sort:*)",
       "Bash(diff:*)",
@@ -33,6 +38,7 @@
       "Bash(cp:*)",
       "Bash(mv:*)",
       "Bash(touch:*)",
+      "Bash(tee:*)",
       "Bash(wc:*)",
       "Bash(du:*)",
       "Bash(head:*)",
@@ -42,7 +48,17 @@
       "Bash(chmod:*)",
       "Bash(uuidgen)",
       "Bash(openssl rand:*)",
+      "Bash(shasum:*)",
+      "Bash(ssh:*)",
+      "Bash(ping:*)",
+      "Bash(dig:*)",
+      "Bash(nslookup:*)",
+      "Bash(nc:*)",
+      "Bash(lsof:*)",
+      "Bash(sleep:*)",
       "Read(~/**)",
+      "Read(//opt/homebrew/**)",
+      "Read(//usr/local/**)",
       "WebSearch",
       "WebFetch",
       "mcp__context7__*",
@@ -53,12 +69,9 @@
       "mcp__docker__*",
       "mcp__firecrawl-mcp__*",
       "mcp__chrome-devtools__*",
-      "Bash(./install.sh)"
+      "Read(//Users/**)"
     ],
-    "deny": [],
-    "additionalDirectories": [
-      "/Users/dalepaux/WebServer/dlepaux/dotfiles/.claude/skills"
-    ]
+    "deny": []
   },
   "hooks": {
     "PostToolUse": [
