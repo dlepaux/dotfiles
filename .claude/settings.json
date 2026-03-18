@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "hooks": {
     "Notification": [
       {
@@ -60,7 +63,6 @@
       "Bash(find *)",
       "Bash(gh *)",
       "Bash(git *)",
-      "Bash(go *)",
       "Bash(grep *)",
       "Bash(head *)",
       "Bash(jq *)",
@@ -77,8 +79,6 @@
       "Bash(nvm *)",
       "Bash(openssl rand *)",
       "Bash(osascript *)",
-      "Bash(php *)",
-      "Bash(pig *)",
       "Bash(ping *)",
       "Bash(pip *)",
       "Bash(pip3 *)",
@@ -115,5 +115,6 @@
       "mcp__sequentialthinking__*"
     ],
     "deny": []
-  }
+  },
+  "effortLevel": "max"
 }
