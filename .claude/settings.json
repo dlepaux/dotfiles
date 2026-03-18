@@ -1,6 +1,10 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "alwaysThinkingEnabled": true,
+  "cleanupPeriodDays": 365,
   "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "75"
   },
   "hooks": {
     "Notification": [
@@ -52,17 +56,16 @@
       "Bash(cargo *)",
       "Bash(cat *)",
       "Bash(chmod *)",
-      "Bash(composer *)",
       "Bash(cp *)",
       "Bash(curl *)",
       "Bash(cut *)",
       "Bash(date *)",
+      "Bash(defaults *)",
       "Bash(df *)",
       "Bash(diff *)",
       "Bash(dig *)",
       "Bash(dirname *)",
       "Bash(docker *)",
-      "Bash(drush *)",
       "Bash(du *)",
       "Bash(echo *)",
       "Bash(env *)",
@@ -74,6 +77,7 @@
       "Bash(head *)",
       "Bash(jq *)",
       "Bash(ln *)",
+      "Bash(launchctl *)",
       "Bash(ls *)",
       "Bash(lsof *)",
       "Bash(make *)",
@@ -85,9 +89,13 @@
       "Bash(npx *)",
       "Bash(nslookup *)",
       "Bash(nvm *)",
+      "Bash(open *)",
       "Bash(openssl rand *)",
       "Bash(osascript *)",
+      "Bash(pbcopy *)",
+      "Bash(pbpaste *)",
       "Bash(ping *)",
+      "Bash(plutil *)",
       "Bash(pip *)",
       "Bash(pip3 *)",
       "Bash(ps *)",
@@ -106,6 +114,7 @@
       "Bash(source *)",
       "Bash(ssh *)",
       "Bash(stat *)",
+      "Bash(sw_vers *)",
       "Bash(tail *)",
       "Bash(tar *)",
       "Bash(tee *)",
@@ -113,6 +122,9 @@
       "Bash(tr *)",
       "Bash(uname *)",
       "Bash(unzip *)",
+      "Bash(uv *)",
+      "Bash(yarn *)",
+      "Bash(zip *)",
       "Bash(uuidgen)",
       "Bash(wc *)",
       "Bash(which *)",
@@ -122,6 +134,9 @@
       "Read(//opt/homebrew/**)",
       "Read(//usr/local/**)",
       "Read(~/**)",
+      "Read(~/.ssh/*.pub)",
+      "Read(~/.ssh/config)",
+      "Read(~/.ssh/known_hosts)",
       "WebFetch",
       "WebSearch",
       "mcp__chrome-devtools__*",
@@ -131,9 +146,22 @@
       "mcp__firecrawl-mcp__*",
       "mcp__github__*",
       "mcp__playwright__*",
-      "mcp__sequentialthinking__*"
+      "mcp__sequentialthinking__*",
+      "Read(**/.env.example)",
+      "Edit(**/.env.example)",
+      "Write(**/.env.example)"
     ],
-    "deny": []
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Edit(**/.env)",
+      "Edit(**/.env.*)",
+      "Write(**/.env)",
+      "Write(**/.env.*)",
+      "Read(~/.ssh/**)",
+      "Edit(~/.ssh/**)",
+      "Write(~/.ssh/**)"
+    ]
   },
   "effortLevel": "high"
 }
