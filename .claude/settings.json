@@ -1,10 +1,16 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "alwaysThinkingEnabled": true,
+  "autoUpdatesChannel": "stable",
   "cleanupPeriodDays": 365,
+  "enableAllProjectMcpServers": true,
+  "feedbackSurveyRate": 0,
   "env": {
+    "BASH_MAX_TIMEOUT_MS": "600000",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "75",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "75"
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "64000",
+    "MCP_TIMEOUT": "60000"
   },
   "hooks": {
     "Notification": [
@@ -21,7 +27,7 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "Edit|Write",
+        "matcher": "Edit|Write|MultiEdit",
         "hooks": [
           {
             "type": "command",
@@ -45,6 +51,9 @@
     ]
   },
   "permissions": {
+    "additionalDirectories": ["/Users"],
+    "defaultMode": "acceptEdits",
+    "disableBypassPermissionsMode": "disable",
     "allow": [
       "Bash(ansible *)",
       "Bash(ansible-galaxy *)",
@@ -76,8 +85,8 @@
       "Bash(grep *)",
       "Bash(head *)",
       "Bash(jq *)",
-      "Bash(ln *)",
       "Bash(launchctl *)",
+      "Bash(ln *)",
       "Bash(ls *)",
       "Bash(lsof *)",
       "Bash(make *)",
@@ -95,9 +104,9 @@
       "Bash(pbcopy *)",
       "Bash(pbpaste *)",
       "Bash(ping *)",
-      "Bash(plutil *)",
       "Bash(pip *)",
       "Bash(pip3 *)",
+      "Bash(plutil *)",
       "Bash(ps *)",
       "Bash(pwd)",
       "Bash(python *)",
@@ -122,14 +131,16 @@
       "Bash(tr *)",
       "Bash(uname *)",
       "Bash(unzip *)",
-      "Bash(uv *)",
-      "Bash(yarn *)",
-      "Bash(zip *)",
       "Bash(uuidgen)",
+      "Bash(uv *)",
       "Bash(wc *)",
       "Bash(which *)",
       "Bash(xargs *)",
+      "Bash(yarn *)",
+      "Bash(zip *)",
       "Bash(zsh *)",
+      "Edit(**/.env.example)",
+      "Read(**/.env.example)",
       "Read(//Users/**)",
       "Read(//opt/homebrew/**)",
       "Read(//usr/local/**)",
@@ -139,6 +150,7 @@
       "Read(~/.ssh/known_hosts)",
       "WebFetch",
       "WebSearch",
+      "Write(**/.env.example)",
       "mcp__chrome-devtools__*",
       "mcp__context7__*",
       "mcp__docker__*",
@@ -146,20 +158,18 @@
       "mcp__firecrawl-mcp__*",
       "mcp__github__*",
       "mcp__playwright__*",
-      "mcp__sequentialthinking__*",
-      "Read(**/.env.example)",
-      "Edit(**/.env.example)",
-      "Write(**/.env.example)"
+      "mcp__sequentialthinking__*"
     ],
     "deny": [
-      "Read(**/.env)",
-      "Read(**/.env.*)",
+      "Bash(sudo *)",
       "Edit(**/.env)",
       "Edit(**/.env.*)",
+      "Edit(~/.ssh/**)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(~/.ssh/**)",
       "Write(**/.env)",
       "Write(**/.env.*)",
-      "Read(~/.ssh/**)",
-      "Edit(~/.ssh/**)",
       "Write(~/.ssh/**)"
     ]
   },
