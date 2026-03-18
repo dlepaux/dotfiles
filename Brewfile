@@ -29,4 +29,4 @@ brew "imagemagick"
 
 # Casks
 cask "claude-code"
-cask "docker-desktop"
+# docker-desktop — install manually, Homebrew cask conflicts with SIP on adopt/update

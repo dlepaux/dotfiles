@@ -6,7 +6,8 @@ Personal configuration files for macOS.
 
 | File | Description |
 |------|-------------|
-| `.zprofile` | Zsh login shell — brew + nvm environment (loaded by all shells, including VSCode) |
+| `.zshenv` | Zsh environment — brew, nvm, rust PATH (sourced by ALL zsh instances) |
+| `.zprofile` | Zsh login shell (empty — env setup moved to `.zshenv`) |
 | `.zshrc` | Zsh interactive shell — completions, history, starship prompt, aliases |
 | `.bash_profile` | Bash config (fallback) — same essentials + git completion |
 | `.gitconfig` | Git aliases, merge/push/pull settings, LFS |
@@ -18,7 +19,7 @@ Personal configuration files for macOS.
 | `.claude/` | Claude Code configuration (settings, skills, agents, hooks) |
 | `.secrets.example` | Template for API keys (actual keys in `~/.secrets`) |
 | `.gitignore` | Prevents accidental commit of secrets and editor files |
-| `install.sh` | Symlinks everything + merges MCP config |
+| `install.sh` | Symlinks everything + merges MCP config (`--no-brew` to skip Homebrew) |
 
 ## Fresh install on macOS
 
@@ -37,7 +38,8 @@ brew install starship jq
 ```sh
 git clone https://github.com/dlepaux/dotfiles.git ~/WebServer/dlepaux/dotfiles
 cd ~/WebServer/dlepaux/dotfiles
-./install.sh
+./install.sh            # full install (Homebrew + symlinks)
+./install.sh --no-brew  # symlinks only, skip Homebrew packages
 ```
 
 ### 3. Configure secrets
@@ -48,7 +50,7 @@ vim ~/.secrets  # Fill in your API keys
 
 ### 4. Activate
 
-Open a new terminal tab, or `source ~/.zshrc`.
+Open a new terminal tab, or `source ~/.zshenv && source ~/.zshrc`.
 
 ## Claude Code
 

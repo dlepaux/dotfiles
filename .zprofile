@@ -1,9 +1,2 @@
-# Zsh login shell — environment setup
-# Sourced by all shells (interactive, non-interactive, VSCode, scripts)
-
-# Brew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+# Zsh login shell — runs after .zshenv, only for login sessions
+# Environment setup is in .zshenv — keep this file for login-only concerns

@@ -1,13 +1,23 @@
 #!/usr/bin/env zsh
 # Symlink dotfiles to home directory
-# Usage: ./install.sh
+# Usage: ./install.sh [--no-brew]
 
 set -e
 
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
+SKIP_BREW=false
+
+for arg in "$@"; do
+  case "$arg" in
+    --no-brew) SKIP_BREW=true ;;
+    *) echo "Unknown option: $arg"; echo "Usage: ./install.sh [--no-brew]"; exit 1 ;;
+  esac
+done
 
 # Homebrew packages
-if command -v brew &>/dev/null; then
+if [ "$SKIP_BREW" = true ]; then
+  echo "Skipping Homebrew packages (--no-brew)."
+elif command -v brew &>/dev/null; then
   echo "Installing Homebrew packages..."
   brew bundle --file="$DOTFILES_DIR/Brewfile"
 else
@@ -15,6 +25,7 @@ else
 fi
 
 # Shell configs
+ln -sf "$DOTFILES_DIR/.zshenv" ~/.zshenv
 ln -sf "$DOTFILES_DIR/.zprofile" ~/.zprofile
 ln -sf "$DOTFILES_DIR/.zshrc" ~/.zshrc
 ln -sf "$DOTFILES_DIR/.bash_profile" ~/.bash_profile
