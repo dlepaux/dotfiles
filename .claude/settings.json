@@ -41,6 +41,7 @@
       "Bash(grep *)",
       "Bash(head *)",
       "Bash(jq *)",
+      "Bash(kill *)",
       "Bash(launchctl *)",
       "Bash(ln *)",
       "Bash(ls *)",
@@ -62,6 +63,7 @@
       "Bash(ping *)",
       "Bash(pip *)",
       "Bash(pip3 *)",
+      "Bash(pkill *)",
       "Bash(plutil *)",
       "Bash(ps *)",
       "Bash(pwd)",
@@ -95,8 +97,6 @@
       "Bash(yarn *)",
       "Bash(zip *)",
       "Bash(zsh *)",
-      "Edit(**/.env.example)",
-      "Read(**/.env.example)",
       "Read(//Users/**)",
       "Read(//opt/homebrew/**)",
       "Read(//usr/local/**)",
@@ -106,7 +106,6 @@
       "Read(~/.ssh/known_hosts)",
       "WebFetch",
       "WebSearch",
-      "Write(**/.env.example)",
       "mcp__chrome-devtools__*",
       "mcp__context7__*",
       "mcp__docker__*",
@@ -114,18 +113,14 @@
       "mcp__firecrawl-mcp__*",
       "mcp__github__*",
       "mcp__playwright__*",
-      "mcp__sequentialthinking__*"
+      "mcp__sequentialthinking__*",
+      "Bash(wait bj9h03s3o:*)",
+      "Bash(rsync -a --exclude='node_modules' --exclude='.git' --exclude='tsconfig.*.tsbuildinfo' --exclude='tsconfig.tsbuildinfo' /Users/dalepaux/WebServer/fiba/R2D2_Front-ui/ /Users/dalepaux/WebServer/fiba/refactored-front-ui/)"
     ],
     "deny": [
       "Bash(sudo *)",
-      "Edit(**/.env)",
-      "Edit(**/.env.*)",
       "Edit(~/.ssh/**)",
-      "Read(**/.env)",
-      "Read(**/.env.*)",
       "Read(~/.ssh/**)",
-      "Write(**/.env)",
-      "Write(**/.env.*)",
       "Write(~/.ssh/**)"
     ],
     "defaultMode": "acceptEdits",
@@ -167,16 +162,6 @@
           {
             "type": "command",
             "command": "bash $HOME/.claude/hooks/enforce-bash-permissions.sh",
-            "timeout": 5
-          }
-        ]
-      },
-      {
-        "matcher": "Edit|Write|Read",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash $HOME/.claude/hooks/protect-env.sh",
             "timeout": 5
           }
         ]
