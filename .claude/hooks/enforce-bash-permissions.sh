@@ -8,6 +8,7 @@
 set -uo pipefail
 
 SETTINGS_FILE="$HOME/.claude/settings.json"
+LOG_FILE="$HOME/.claude/hooks/enforce-bash-permissions.log"
 
 command -v jq &>/dev/null || exit 0
 [ -f "$SETTINGS_FILE" ] || exit 0
@@ -16,8 +17,16 @@ INPUT=$(cat)
 COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
 [ -z "$COMMAND" ] && exit 0
 
+log() {
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1: $2 → cmd: $COMMAND" >> "$LOG_FILE"
+}
+
 decide() {
   local decision="$1" reason="$2"
+  # Log deny and fall-through (ask) decisions for debugging
+  if [[ "$decision" != "allow" ]]; then
+    log "$decision" "$reason"
+  fi
   jq -n --arg d "$decision" --arg r "$reason" '{
     hookSpecificOutput: {
       hookEventName: "PreToolUse",
@@ -98,4 +107,5 @@ if $ALL_ALLOWED; then
 fi
 
 # Fall through: at least one subcommand wasn't explicitly allowed → normal prompt
+log "ask" "No matching allow rule (fall-through)"
 exit 0
