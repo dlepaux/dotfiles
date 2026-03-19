@@ -50,6 +50,7 @@
       "Bash(kill *)",
       "Bash(launchctl *)",
       "Bash(ln *)",
+      "Bash(ls)",
       "Bash(ls *)",
       "Bash(lsof *)",
       "Bash(make *)",
@@ -133,7 +134,9 @@
     "defaultMode": "acceptEdits",
     "disableBypassPermissionsMode": "disable",
     "additionalDirectories": [
-      "/Users"
+      "/Users",
+      "/tmp",
+      "/Users/davidlepaux/.claude"
     ]
   },
   "enableAllProjectMcpServers": true,
@@ -177,6 +180,5 @@
   },
   "feedbackSurveyRate": 0,
   "alwaysThinkingEnabled": true,
-  "autoUpdatesChannel": "stable",
-  "effortLevel": "max"
+  "autoUpdatesChannel": "stable"
 }
