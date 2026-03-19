@@ -58,4 +58,6 @@ When KISS and SOLID conflict, favor fewer files and less indirection. Use SOLID 
 
 ## North Star
 
-For tasks involving new modules, services, or architectural changes: check for a `NORTH-STAR.md` at the project root. If none exists, ask the user about the product vision before making significant design decisions.
+Before working on new modules, services, or architectural changes: read `NORTH-STAR.md` at the project root. Validate that the proposed work aligns with the stated vision, goals, and constraints. If it conflicts, raise the concern before proceeding.
+
+If `NORTH-STAR.md` does not exist, suggest running `/north-star` to create one before making significant design decisions.

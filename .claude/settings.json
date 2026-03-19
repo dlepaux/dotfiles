@@ -170,5 +170,6 @@
   },
   "feedbackSurveyRate": 0,
   "alwaysThinkingEnabled": true,
-  "autoUpdatesChannel": "stable"
+  "autoUpdatesChannel": "stable",
+  "effortLevel": "max"
 }
