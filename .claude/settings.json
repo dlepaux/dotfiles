@@ -78,6 +78,7 @@
       "Bash(readlink *)",
       "Bash(realpath *)",
       "Bash(rm *)",
+      "Bash(rsync *)",
       "Bash(rustc *)",
       "Bash(rustup *)",
       "Bash(sed *)",
@@ -98,6 +99,7 @@
       "Bash(unzip *)",
       "Bash(uuidgen)",
       "Bash(uv *)",
+      "Bash(wait *)",
       "Bash(wc *)",
       "Bash(which *)",
       "Bash(xargs *)",
@@ -120,9 +122,7 @@
       "mcp__firecrawl-mcp__*",
       "mcp__github__*",
       "mcp__playwright__*",
-      "mcp__sequentialthinking__*",
-      "Bash(wait bj9h03s3o:*)",
-      "Bash(rsync -a --exclude='node_modules' --exclude='.git' --exclude='tsconfig.*.tsbuildinfo' --exclude='tsconfig.tsbuildinfo' /Users/dalepaux/WebServer/fiba/R2D2_Front-ui/ /Users/dalepaux/WebServer/fiba/refactored-front-ui/)"
+      "mcp__sequentialthinking__*"
     ],
     "deny": [
       "Bash(sudo *)",
